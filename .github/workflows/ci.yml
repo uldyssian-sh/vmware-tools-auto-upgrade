@@ -18,7 +18,7 @@ jobs:
       uses: actions/checkout@v4
       
     - name: Setup PowerShell
-      uses: azure/powershell@v1
+      uses: azure/powershell@v2
       with:
         inlineScript: |
           Write-Host "PowerShell version: $($PSVersionTable.PSVersion)"
