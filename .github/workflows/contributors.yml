@@ -1,0 +1,32 @@
+name: Contributors Setup
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/contributors.yml'
+
+jobs:
+  setup-contributors:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Setup contributors
+      run: |
+        mkdir -p .github/contributors
+        echo "Repository contributors setup" > .github/contributors/setup.txt
+        echo "Date: $(date)" >> .github/contributors/setup.txt
+        echo "Repository: vmware-tools-auto-upgrade" >> .github/contributors/setup.txt
+        
+    - name: Commit as actions-user
+      run: |
+        git config user.name "actions-user"
+        git config user.email "actions-user@users.noreply.github.com"
+        git add .github/contributors/
+        git commit -m "chore: setup repository contributors tracking"
+        git push
