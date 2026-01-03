@@ -262,6 +262,20 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Batch Execution](examples/batch-execution.ps1) - Enterprise batch processing example
 - [Test Suite](tests/Test-VMToolsUpgrade.ps1) - Comprehensive testing framework
 
+## � Reporsitory Statistics
+
+- **Total Scripts**: 8 PowerShell scripts
+- **Documentation Files**: 12 comprehensive guides
+- **Test Coverage**: Unit, Integration, and Performance tests
+- **Security Features**: Hardening, Compliance, and Audit logging
+- **Enterprise Features**: Deployment, Monitoring, and Batch processing
+- **Supported Environments**: Small (10-100 VMs) to Enterprise (5000+ VMs)
+
+- [VMware vSphere API Reference Documentation](https://developer.vmware.com/apis/vsphere-automation/latest/)
+- [PowerCLI Cmdlet Reference Guide](https://developer.vmware.com/powercli)
+- [VMware Tools Installation and Configuration Guide](https://docs.vmware.com/en/VMware-Tools/)
+- [vSphere Security Best Practices Documentation](https://docs.vmware.com/en/VMware-vSphere/index.html)
+
 ## 📚 References
 
 - [VMware vSphere API Reference Documentation](https://developer.vmware.com/apis/vsphere-automation/latest/)
