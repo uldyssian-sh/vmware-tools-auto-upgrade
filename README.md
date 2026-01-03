@@ -121,18 +121,28 @@ All other VM configuration settings remain unchanged.
 
 ```
 vmware-tools-auto-upgrade/
-├── scripts/
-│   └── Enable-VMTools-AutoUpgrade-AllVMs.ps1
+├── .github/
+│   ├── workflows/
+│   │   └── ci.yml                    # CI/CD pipeline
+│   └── dependabot.yml               # Dependency updates
+├── assets/
+│   └── images/                      # Documentation images
 ├── docs/
-│   ├── USAGE.md
-│   ├── TROUBLESHOOTING.md
-│   └── API-REFERENCE.md
+│   ├── USAGE.md                     # Detailed usage guide
+│   ├── TROUBLESHOOTING.md           # Troubleshooting guide
+│   └── API-REFERENCE.md             # Complete API reference
 ├── examples/
-│   ├── sample-output.txt
-│   └── batch-execution.ps1
+│   ├── sample-output.txt            # Example script output
+│   └── batch-execution.ps1          # Enterprise batch execution
+├── scripts/
+│   └── Enable-VMTools-AutoUpgrade-AllVMs.ps1  # Main script
 ├── tests/
-│   └── Test-VMToolsUpgrade.ps1
-└── README.md
+│   └── Test-VMToolsUpgrade.ps1      # Comprehensive test suite
+├── CHANGELOG.md                     # Version history
+├── CONTRIBUTING.md                  # Contribution guidelines
+├── LICENSE                          # MIT license
+├── README.md                        # This file
+└── SECURITY.md                      # Security policy
 ```
 
 ## 🛡️ Security Considerations
@@ -229,12 +239,26 @@ We welcome contributions to improve this solution:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## 📚 Documentation
+
+- **[Usage Guide](docs/USAGE.md)** - Comprehensive usage instructions and examples
+- **[API Reference](docs/API-REFERENCE.md)** - Complete parameter and function documentation
+- **[Troubleshooting Guide](docs/TROUBLESHOOTING.md)** - Common issues and solutions
+- **[Contributing Guidelines](CONTRIBUTING.md)** - How to contribute to the project
+- **[Security Policy](SECURITY.md)** - Security guidelines and vulnerability reporting
+- **[Changelog](CHANGELOG.md)** - Version history and release notes
+
+### Quick Links
+- [Sample Output](examples/sample-output.txt) - Example script execution output
+- [Batch Execution](examples/batch-execution.ps1) - Enterprise batch processing example
+- [Test Suite](tests/Test-VMToolsUpgrade.ps1) - Comprehensive testing framework
+
 ## 📚 References
 
-- VMware vSphere API Reference Documentation
-- PowerCLI Cmdlet Reference Guide
-- VMware Tools Installation and Configuration Guide
-- vSphere Security Best Practices Documentation
+- [VMware vSphere API Reference Documentation](https://developer.vmware.com/apis/vsphere-automation/latest/)
+- [PowerCLI Cmdlet Reference Guide](https://developer.vmware.com/powercli)
+- [VMware Tools Installation and Configuration Guide](https://docs.vmware.com/en/VMware-Tools/)
+- [vSphere Security Best Practices Documentation](https://docs.vmware.com/en/VMware-vSphere/index.html)
 
 ---
 
