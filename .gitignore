@@ -1,39 +1,40 @@
-# PowerShell and VMware Tools Auto-Upgrade Repository
+# PowerShell and VMware Tools Auto-Upgrade specific ignores
 
-# Logs
+# Log files
 *.log
 logs/
-*.log.*
+Logs/
+VMTools-AutoUpgrade-*.log
+BatchExecution-*.log
 
-# PowerShell specific
-*.ps1xml
-*.psd1
-*.psm1
+# PowerShell module cache
+PSGetModuleInfo.xml
 
 # Temporary files
 *.tmp
 *.temp
-temp/
-tmp/
+~$*
 
 # Credentials and sensitive data
-*.cred
 *.credential
-credentials/
-secrets/
+*.cred
+credentials.xml
+*.pfx
+*.p12
 
-# vCenter connection files
-*.viConnection
-*.vcenter
+# PowerShell profiles (may contain sensitive info)
+Microsoft.PowerShell_profile.ps1
+Microsoft.PowerShellISE_profile.ps1
 
 # Test results
 TestResults/
 *.trx
 *.coverage
+*.coveragexml
 
-# IDE files
-.vscode/
-.idea/
+# IDE and editor files
+.vscode/settings.json
+.vscode/launch.json
 *.swp
 *.swo
 *~
@@ -46,31 +47,57 @@ TestResults/
 .Trashes
 ehthumbs.db
 Thumbs.db
+desktop.ini
 
-# PowerShell Gallery
-*.nupkg
+# Windows specific
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
 
-# Personal configurations
-personal-configs/
-my-settings/
-*.personal
+# PowerShell execution policy bypass files
+*.ps1.lnk
+
+# Custom configuration files (may contain environment-specific data)
+config.local.json
+settings.local.json
+appsettings.local.json
 
 # Backup files
 *.bak
 *.backup
-*~
+*.old
 
-# Archives
+# Archive files
 *.zip
-*.tar.gz
 *.rar
 *.7z
+*.tar
+*.gz
 
-# Environment specific
+# Documentation build artifacts
+docs/_build/
+docs/build/
+
+# Package files
+*.nupkg
+*.snupkg
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Local environment files
 .env
 .env.local
-.env.production
-
-# Documentation builds
-docs/_build/
-site/
+.env.*.local
