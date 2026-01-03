@@ -4,6 +4,10 @@ on:
   schedule:
     - cron: '0 3 * * 1'  # Weekly on Monday at 3 AM
   workflow_dispatch:  # Allow manual trigger
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/auto-update.yml'
 
 jobs:
   update-repository:
