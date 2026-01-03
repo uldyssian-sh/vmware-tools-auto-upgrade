@@ -1,0 +1,135 @@
+name: Feature Request
+description: Suggest a new feature or enhancement for the VMware Tools Auto-Upgrade solution
+title: "[FEATURE] "
+labels: ["enhancement", "needs-triage"]
+assignees:
+  - uldyssian-sh
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a new feature! Please provide detailed information about your request.
+
+  - type: dropdown
+    id: feature-type
+    attributes:
+      label: Feature Type
+      description: What type of feature are you requesting?
+      options:
+        - New functionality
+        - Performance improvement
+        - User experience enhancement
+        - Documentation improvement
+        - Security enhancement
+        - Integration with other tools
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: Is your feature request related to a problem? Please describe.
+      placeholder: A clear and concise description of what the problem is. Ex. I'm always frustrated when...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the solution you'd like
+      placeholder: A clear and concise description of what you want to happen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions
+      description: Describe alternatives you've considered
+      placeholder: A clear and concise description of any alternative solutions or features you've considered.
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature to you?
+      options:
+        - Low - Nice to have
+        - Medium - Would be helpful
+        - High - Important for my use case
+        - Critical - Blocking my workflow
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Target Environment
+      description: What type of environment would benefit from this feature?
+      options:
+        - Small environments (< 100 VMs)
+        - Medium environments (100-500 VMs)
+        - Large environments (500+ VMs)
+        - All environments
+        - Specific use case (describe below)
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use Case Details
+      description: Provide specific details about your use case
+      placeholder: |
+        - How would you use this feature?
+        - What workflow would it improve?
+        - What business value would it provide?
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: Implementation Ideas
+      description: If you have ideas about how this could be implemented, please share
+      placeholder: Any technical suggestions or implementation approaches
+
+  - type: checkboxes
+    id: compatibility
+    attributes:
+      label: Compatibility Considerations
+      description: Should this feature maintain compatibility with existing functionality?
+      options:
+        - label: Must maintain backward compatibility
+        - label: Can introduce breaking changes if necessary
+        - label: Should be optional/configurable
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context, screenshots, or examples about the feature request
+      placeholder: Any additional information that would help understand the request
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      description: Are you interested in contributing to this feature?
+      options:
+        - label: I would be interested in contributing code for this feature
+        - label: I would be interested in testing this feature
+        - label: I would be interested in providing documentation for this feature
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Confirmation
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues to ensure this is not a duplicate
+          required: true
+        - label: This feature request aligns with the project's goals and scope
+          required: true

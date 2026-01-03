@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📚 Documentation
+    url: https://github.com/uldyssian-sh/vmware-tools-auto-upgrade/wiki
+    about: Check the documentation and wiki for usage guides and troubleshooting
+  - name: 💬 Discussions
+    url: https://github.com/uldyssian-sh/vmware-tools-auto-upgrade/discussions
+    about: Ask questions and discuss ideas with the community
+  - name: 🔒 Security Issues
+    url: https://github.com/uldyssian-sh/vmware-tools-auto-upgrade/security/advisories/new
+    about: Report security vulnerabilities privately

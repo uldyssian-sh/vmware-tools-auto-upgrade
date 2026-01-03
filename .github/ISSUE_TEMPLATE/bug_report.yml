@@ -1,0 +1,154 @@
+name: Bug Report
+description: Report a bug or issue with the VMware Tools Auto-Upgrade solution
+title: "[BUG] "
+labels: ["bug", "needs-triage"]
+assignees:
+  - uldyssian-sh
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a bug! Please provide as much detail as possible to help us resolve the issue.
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: What version of the script are you using?
+      placeholder: "v1.0.1"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      description: What type of environment are you running in?
+      options:
+        - Production
+        - Development
+        - Test/Lab
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: powershell-version
+    attributes:
+      label: PowerShell Version
+      description: What version of PowerShell are you using?
+      placeholder: "5.1.19041.2364"
+    validations:
+      required: true
+
+  - type: input
+    id: powercli-version
+    attributes:
+      label: PowerCLI Version
+      description: What version of VMware PowerCLI are you using?
+      placeholder: "13.0.0"
+    validations:
+      required: true
+
+  - type: input
+    id: vcenter-version
+    attributes:
+      label: vCenter Version
+      description: What version of vCenter Server are you connecting to?
+      placeholder: "7.0 U3"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is
+      placeholder: Describe the issue you're experiencing
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Run the script with parameters...
+        2. Select option...
+        3. See error...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: A clear and concise description of what you expected to happen
+      placeholder: What should have happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: A clear and concise description of what actually happened
+      placeholder: What actually happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: error-output
+    attributes:
+      label: Error Output
+      description: If applicable, paste the error message or output
+      render: shell
+      placeholder: Paste error messages here (remove any sensitive information)
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Log Files
+      description: If applicable, paste relevant log file contents
+      render: shell
+      placeholder: Paste log contents here (remove any sensitive information)
+
+  - type: input
+    id: vm-count
+    attributes:
+      label: VM Count
+      description: Approximately how many VMs are in your environment?
+      placeholder: "150"
+
+  - type: checkboxes
+    id: execution-mode
+    attributes:
+      label: Execution Mode
+      description: Which mode were you running in when the issue occurred?
+      options:
+        - label: Dry-run mode
+        - label: Apply mode
+        - label: Interactive mode
+        - label: Command-line parameters
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here
+      placeholder: Any additional information that might be helpful
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Confirmation
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues to ensure this is not a duplicate
+          required: true
+        - label: I have removed any sensitive information from this report
+          required: true
+        - label: I have tested this in a lab environment if possible
+          required: false
