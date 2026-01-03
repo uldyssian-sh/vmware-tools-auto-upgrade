@@ -53,7 +53,13 @@ param(
     [switch]$DryRun,
     
     [Parameter(Mandatory = $false)]
-    [switch]$Force
+    [switch]$Force,
+    
+    [Parameter(Mandatory = $false)]
+    [int]$BatchSize = 50,
+    
+    [Parameter(Mandatory = $false)]
+    [string]$LogPath = $null
 )
 
 # Script configuration
