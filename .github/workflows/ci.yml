@@ -1,0 +1,170 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 2 * * 0'  # Weekly on Sunday at 2 AM
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: PowerShell Tests
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup PowerShell
+      uses: azure/powershell@v1
+      with:
+        inlineScript: |
+          Write-Host "PowerShell version: $($PSVersionTable.PSVersion)"
+          Write-Host "Repository structure validation"
+        azPSVersion: "latest"
+        
+    - name: Validate repository structure
+      shell: pwsh
+      run: |
+        Write-Host "Validating repository structure..."
+        $requiredFiles = @(
+          "README.md",
+          "LICENSE", 
+          "CONTRIBUTING.md",
+          "SECURITY.md",
+          "CHANGELOG.md"
+        )
+        
+        foreach ($file in $requiredFiles) {
+          if (Test-Path $file) {
+            Write-Host "✓ $file exists"
+          } else {
+            Write-Error "✗ $file is missing"
+            exit 1
+          }
+        }
+        
+        Write-Host "All required files are present"
+        
+    - name: PowerShell script validation
+      shell: pwsh
+      run: |
+        Write-Host "Validating PowerShell scripts..."
+        $scriptFiles = Get-ChildItem -Path "scripts" -Filter "*.ps1" -Recurse
+        
+        foreach ($script in $scriptFiles) {
+          Write-Host "Validating: $($script.Name)"
+          $errors = $null
+          $null = [System.Management.Automation.PSParser]::Tokenize((Get-Content $script.FullName -Raw), [ref]$errors)
+          
+          if ($errors.Count -eq 0) {
+            Write-Host "✓ $($script.Name) syntax is valid"
+          } else {
+            Write-Error "✗ $($script.Name) has syntax errors"
+            $errors | ForEach-Object { Write-Error $_.Message }
+            exit 1
+          }
+        }
+        
+        Write-Host "All PowerShell scripts are valid"
+
+  security-scan:
+    runs-on: ubuntu-latest
+    name: Security Scan
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Run security scan
+      shell: bash
+      run: |
+        echo "Running security scan..."
+        
+        # Check for sensitive data patterns
+        if grep -r -i "password\|secret\|key\|token" --include="*.ps1" --include="*.md" . | grep -v "example\|placeholder\|template"; then
+          echo "⚠️ Potential sensitive data found"
+          exit 1
+        else
+          echo "✓ No sensitive data patterns detected"
+        fi
+        
+        # Check for proper file permissions
+        find . -name "*.ps1" -perm /111 | while read file; do
+          echo "⚠️ Executable PowerShell file found: $file"
+        done
+        
+        echo "Security scan completed"
+
+  documentation:
+    runs-on: ubuntu-latest
+    name: Documentation Check
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Validate documentation
+      shell: bash
+      run: |
+        echo "Validating documentation..."
+        
+        # Check README.md structure
+        if grep -q "## 📋 Overview" README.md; then
+          echo "✓ README.md has proper structure"
+        else
+          echo "✗ README.md missing required sections"
+          exit 1
+        fi
+        
+        # Check for required disclaimers
+        if grep -q "⭐ Star this repository if you find it helpful!" README.md; then
+          echo "✓ Star disclaimer present"
+        else
+          echo "✗ Missing star disclaimer"
+          exit 1
+        fi
+        
+        if grep -q "Use of this code is at your own risk" README.md; then
+          echo "✓ Risk disclaimer present"
+        else
+          echo "✗ Missing risk disclaimer"
+          exit 1
+        fi
+        
+        echo "Documentation validation completed"
+
+  release-check:
+    runs-on: ubuntu-latest
+    name: Release Validation
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Check for version updates
+      shell: bash
+      run: |
+        echo "Checking for version updates..."
+        
+        if [ -f "CHANGELOG.md" ]; then
+          echo "✓ CHANGELOG.md exists"
+          
+          # Extract latest version from changelog
+          latest_version=$(grep -m 1 "## \[" CHANGELOG.md | sed 's/## \[\(.*\)\].*/\1/')
+          echo "Latest version in changelog: $latest_version"
+          
+          # Check if version tag exists
+          if git tag -l | grep -q "v$latest_version"; then
+            echo "✓ Version tag v$latest_version exists"
+          else
+            echo "ℹ️ Version tag v$latest_version not found (may need to be created)"
+          fi
+        else
+          echo "⚠️ CHANGELOG.md not found"
+        fi
+        
+        echo "Release validation completed"
