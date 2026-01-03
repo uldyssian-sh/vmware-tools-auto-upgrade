@@ -1,0 +1,76 @@
+# PowerShell and VMware Tools Auto-Upgrade Repository
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# PowerShell specific
+*.ps1xml
+*.psd1
+*.psm1
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Credentials and sensitive data
+*.cred
+*.credential
+credentials/
+secrets/
+
+# vCenter connection files
+*.viConnection
+*.vcenter
+
+# Test results
+TestResults/
+*.trx
+*.coverage
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# PowerShell Gallery
+*.nupkg
+
+# Personal configurations
+personal-configs/
+my-settings/
+*.personal
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Environment specific
+.env
+.env.local
+.env.production
+
+# Documentation builds
+docs/_build/
+site/

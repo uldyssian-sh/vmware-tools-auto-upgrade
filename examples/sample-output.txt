@@ -1,0 +1,58 @@
+=== VMware Tools Auto-Upgrade on Power-On (Enterprise Solution) ===
+
+Enter vCenter FQDN or IP: vcenter.example.com
+Execution mode: (D)ry-run or (A)pply [D/A]: A
+
+APPLY MODE: Changes will be applied to matching VMs
+
+=== CURRENT STATE (All VMs) ===
+VMName              PowerState ToolsUpgradePolicy   ToolsStatus
+------              ---------- ------------------   -----------
+PROD-WEB-01         PoweredOn  manual               toolsOk
+PROD-WEB-02         PoweredOn  upgradeAtPowerCycle  toolsOk
+PROD-DB-01          PoweredOff                      toolsNotInstalled
+PROD-APP-01         PoweredOn  manual               toolsOld
+TEST-VM-01          PoweredOn                       toolsOk
+DEV-VM-01           PoweredOff upgradeAtPowerCycle  toolsNotRunning
+
+VMs requiring auto-upgrade configuration:
+VMName              PowerState ToolsUpgradePolicy   ToolsStatus
+------              ---------- ------------------   -----------
+PROD-WEB-01         PoweredOn  manual               toolsOk
+PROD-DB-01          PoweredOff                      toolsNotInstalled
+PROD-APP-01         PoweredOn  manual               toolsOld
+TEST-VM-01          PoweredOn                       toolsOk
+
+Total VMs to be configured: 4
+
+Proceed with enabling auto-upgrade on these VMs? (Y/N): Y
+
+Applying VMware Tools auto-upgrade configuration...
+  ✓ SUCCESS - PROD-WEB-01
+  ✓ SUCCESS - PROD-DB-01
+  ✓ SUCCESS - PROD-APP-01
+  ✓ SUCCESS - TEST-VM-01
+
+=== UPDATED STATE (Affected VMs) ===
+VMName              PowerState ToolsUpgradePolicy   ToolsStatus
+------              ---------- ------------------   -----------
+PROD-WEB-01         PoweredOn  upgradeAtPowerCycle  toolsOk
+PROD-DB-01          PoweredOff upgradeAtPowerCycle  toolsNotInstalled
+PROD-APP-01         PoweredOn  upgradeAtPowerCycle  toolsOld
+TEST-VM-01          PoweredOn  upgradeAtPowerCycle  toolsOk
+
+=== BEFORE / AFTER COMPARISON ===
+VMName              Before  After               Changed
+------              ------  -----               -------
+PROD-WEB-01         manual  upgradeAtPowerCycle ✓ YES
+PROD-DB-01                  upgradeAtPowerCycle ✓ YES
+PROD-APP-01         manual  upgradeAtPowerCycle ✓ YES
+TEST-VM-01                  upgradeAtPowerCycle ✓ YES
+
+Total VMs changed: 4
+
+✓ OPERATION COMPLETE
+  - Successful configurations: 4
+  - Failed configurations: 0
+
+Log file created: VMTools-AutoUpgrade-20250103-143022.log
