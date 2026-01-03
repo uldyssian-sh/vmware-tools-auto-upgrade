@@ -3,7 +3,9 @@
 [![PowerCLI](https://img.shields.io/badge/PowerCLI-Compatible-blue.svg)](https://github.com/uldyssian-sh/vmware-tools-auto-upgrade)
 [![VMware](https://img.shields.io/badge/VMware-vSphere-green.svg)](https://github.com/uldyssian-sh/vmware-tools-auto-upgrade)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Maintenance](https://img.shields.io/badge/Maintained-yes-green.svg)](https://github.com/uldyssian-sh/vmware-tools-auto-upgrade/graphs/commit-activity)
+[![Release](https://img.shields.io/github/v/release/uldyssian-sh/vmware-tools-auto-upgrade)](https://github.com/uldyssian-sh/vmware-tools-auto-upgrade/releases)
+[![Issues](https://img.shields.io/github/issues/uldyssian-sh/vmware-tools-auto-upgrade)](https://github.com/uldyssian-sh/vmware-tools-auto-upgrade/issues)
+[![Stars](https://img.shields.io/github/stars/uldyssian-sh/vmware-tools-auto-upgrade)](https://github.com/uldyssian-sh/vmware-tools-auto-upgrade/stargazers)
 
 ## 📋 Overview
 
@@ -214,6 +216,12 @@ We welcome contributions to improve this solution:
 - Include comprehensive error handling
 - Add appropriate comments and documentation
 - Test thoroughly in lab environments before production use
+
+## �  Contributors
+
+- **uldyssian-sh LT** - *Project Maintainer* - [uldyssian-sh](https://github.com/uldyssian-sh)
+- **dependabot[bot]** - *Dependency Updates* - [dependabot](https://github.com/dependabot)
+- **actions-user** - *Automated Workflows* - GitHub Actions
 
 ## 📞 Support
 
