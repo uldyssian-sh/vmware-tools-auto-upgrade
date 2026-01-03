@@ -58,4 +58,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - GPG-signed commits for verification
 - Security policy documentation
 
+[1.0.1]: https://github.com/uldyssian-sh/vmware-tools-auto-upgrade/releases/tag/v1.0.1
 [1.0.0]: https://github.com/uldyssian-sh/vmware-tools-auto-upgrade/releases/tag/v1.0.0
