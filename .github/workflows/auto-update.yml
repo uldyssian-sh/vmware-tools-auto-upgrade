@@ -1,107 +1,32 @@
 name: Auto Update Repository
 
 on:
-  schedule:
-    - cron: '0 3 * * 1'  # Weekly on Monday at 3 AM
-  workflow_dispatch:  # Allow manual trigger
+  workflow_dispatch:
   push:
     branches: [ main ]
     paths:
       - '.github/workflows/auto-update.yml'
 
 jobs:
-  update-repository:
+  update-stats:
     runs-on: ubuntu-latest
-    name: Update Repository Metadata
     
     steps:
-    - name: Checkout repository
+    - name: Checkout
       uses: actions/checkout@v4
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         
-    - name: Update repository statistics
+    - name: Update stats
       run: |
-        echo "Updating repository statistics..."
-        
-        # Update timestamp in a stats file
         mkdir -p .github/stats
-        echo "Last updated: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" > .github/stats/last-update.txt
-        echo "Repository: vmware-tools-auto-upgrade" >> .github/stats/last-update.txt
-        echo "Maintainer: uldyssian-sh" >> .github/stats/last-update.txt
+        echo "Last updated: $(date)" > .github/stats/update.txt
+        echo "Repository: vmware-tools-auto-upgrade" >> .github/stats/update.txt
         
-        # Count files and lines
-        echo "Files count: $(find . -type f -name '*.ps1' -o -name '*.md' -o -name '*.yml' | wc -l)" >> .github/stats/last-update.txt
-        echo "PowerShell scripts: $(find . -name '*.ps1' | wc -l)" >> .github/stats/last-update.txt
-        echo "Documentation files: $(find . -name '*.md' | wc -l)" >> .github/stats/last-update.txt
-        
-        echo "Repository statistics updated"
-        
-    - name: Commit updates
+    - name: Commit changes
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        
-        if [[ -n $(git status --porcelain) ]]; then
-          git add .github/stats/
-          git commit -m "chore: update repository statistics
-
-- Updated repository metadata and statistics
-- Automated maintenance by GitHub Actions
-- Maintains repository health and metrics"
-          git push
-          echo "Repository statistics committed"
-        else
-          echo "No changes to commit"
-        fi
-
-  validate-repository:
-    runs-on: ubuntu-latest
-    name: Repository Validation
-    needs: update-repository
-    
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      
-    - name: Validate repository structure
-      run: |
-        echo "Validating repository structure..."
-        
-        # Check required files
-        required_files=("README.md" "LICENSE" "CONTRIBUTING.md" "SECURITY.md" "CHANGELOG.md")
-        
-        for file in "${required_files[@]}"; do
-          if [[ -f "$file" ]]; then
-            echo "✓ $file exists"
-          else
-            echo "✗ $file is missing"
-            exit 1
-          fi
-        done
-        
-        echo "Repository structure validation completed"
-        
-    - name: Update validation status
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        
-        # Update validation timestamp
-        mkdir -p .github/stats
-        echo "Last validation: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" > .github/stats/validation.txt
-        echo "Status: PASSED" >> .github/stats/validation.txt
-        echo "Validated by: GitHub Actions" >> .github/stats/validation.txt
-        
-        if [[ -n $(git status --porcelain) ]]; then
-          git add .github/stats/
-          git commit -m "chore: update validation status
-
-- Repository structure validation completed
-- All required files present and valid
-- Automated validation by GitHub Actions"
-          git push
-          echo "Validation status updated"
-        else
-          echo "No validation changes to commit"
-        fi
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git add .github/stats/
+        git commit -m "chore: automated repository statistics update" || exit 0
+        git push
