@@ -132,26 +132,26 @@ All other VM configuration settings remain unchanged.
 vmware-tools-auto-upgrade/
 ├── .github/
 │   ├── workflows/
-│   │   └── ci.yml                   # CI/CD pipeline
-│   └── dependabot.yml              # Dependency updates
+│   │   └── ci.yml                                      # CI/CD pipeline
+│   └── dependabot.yml                                 # Dependency updates
 ├── assets/
-│   └── images/                     # Documentation images
+│   └── images/                                        # Documentation images
 ├── docs/
-│   ├── USAGE.md                    # Detailed usage guide
-│   ├── TROUBLESHOOTING.md          # Troubleshooting guide
-│   └── API-REFERENCE.md            # Complete API reference
+│   ├── USAGE.md                                       # Detailed usage guide
+│   ├── TROUBLESHOOTING.md                             # Troubleshooting guide
+│   └── API-REFERENCE.md                               # Complete API reference
 ├── examples/
-│   ├── sample-output.txt           # Example script output
-│   └── batch-execution.ps1         # Enterprise batch execution
+│   ├── sample-output.txt                              # Example script output
+│   └── batch-execution.ps1                           # Enterprise batch execution
 ├── scripts/
-│   └── Enable-VMTools-AutoUpgrade-AllVMs.ps1  # Main script
+│   └── Enable-VMTools-AutoUpgrade-AllVMs.ps1         # Main script
 ├── tests/
-│   └── Test-VMToolsUpgrade.ps1     # Comprehensive test suite
-├── CHANGELOG.md                    # Version history
-├── CONTRIBUTING.md                 # Contribution guidelines
-├── LICENSE                         # MIT license
-├── README.md                       # This file
-└── SECURITY.md                     # Security policy
+│   └── Test-VMToolsUpgrade.ps1                       # Comprehensive test suite
+├── CHANGELOG.md                                       # Version history
+├── CONTRIBUTING.md                                    # Contribution guidelines
+├── LICENSE                                            # MIT license
+├── README.md                                          # This file
+└── SECURITY.md                                        # Security policy
 ```
 
 ## 🛡️ Security Considerations
