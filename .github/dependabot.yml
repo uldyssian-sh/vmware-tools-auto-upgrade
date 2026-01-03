@@ -1,35 +1,9 @@
 version: 2
 updates:
-  # Enable version updates for GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
-      day: "sunday"
-      time: "02:00"
-    open-pull-requests-limit: 5
-    reviewers:
-      - "uldyssian-sh"
-    assignees:
-      - "uldyssian-sh"
     commit-message:
-      prefix: "chore"
-      prefix-development: "chore"
-      include: "scope"
-
-  # Enable version updates for PowerShell modules (if any)
-  - package-ecosystem: "nuget"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-      day: "sunday" 
-      time: "02:00"
-    open-pull-requests-limit: 3
-    reviewers:
-      - "uldyssian-sh"
-    assignees:
-      - "uldyssian-sh"
-    commit-message:
-      prefix: "chore"
-      prefix-development: "chore"
+      prefix: "deps"
       include: "scope"
