@@ -59,7 +59,13 @@ param(
     [int]$BatchSize = 50,
     
     [Parameter(Mandatory = $false)]
-    [string]$LogPath = $null
+    [string]$LogPath = $null,
+    
+    [Parameter(Mandatory = $false)]
+    [int]$ThrottleLimit = 10,
+    
+    [Parameter(Mandatory = $false)]
+    [switch]$ParallelProcessing
 )
 
 # Script configuration
