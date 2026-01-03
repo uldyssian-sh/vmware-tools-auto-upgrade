@@ -101,3 +101,8 @@ docs/build/
 .env
 .env.local
 .env.*.local
+# Security - Sensitive Files
+*.key
+*.pem
+config.json
+secrets.json

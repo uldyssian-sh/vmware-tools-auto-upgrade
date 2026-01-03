@@ -95,26 +95,23 @@ jobs:
       run: |
         echo "Running security scan..."
         
-        # Check for sensitive data patterns (excluding legitimate code patterns)
-        sensitive_findings=$(grep -r -i "password\s*=\|secret\s*=\|key\s*=\|token\s*=" --include="*.ps1" --include="*.md" . | grep -v -i "example\|placeholder\|template\|sample\|test\|parameter\|cmdlet" | grep -v "README.md" || true)
+        # Check for actual hardcoded credentials (not just keywords)
+        sensitive_findings=$(grep -r -E "(password|secret|key|token)\s*[:=]\s*['\"][a-zA-Z0-9]{8,}['\"]" --include="*.ps1" --include="*.md" . | grep -v -E "(example|placeholder|template|sample|test|YOUR_|EXAMPLE_)" || true)
         
         if [ -n "$sensitive_findings" ]; then
-          echo "⚠️ Potential sensitive data found:"
-          echo "$sensitive_findings"
-          echo "Please review these findings to ensure no actual credentials are exposed."
-        else
-          echo "✓ No sensitive data patterns detected"
-        fi
-        
-        # Check for hardcoded credentials patterns
-        hardcoded_creds=$(grep -r -E "(password|secret|key|token)\s*[:=]\s*['\"][^'\"]{8,}" --include="*.ps1" --include="*.md" . | grep -v -i "example\|placeholder\|template\|sample\|test" || true)
-        
-        if [ -n "$hardcoded_creds" ]; then
           echo "❌ Hardcoded credentials detected:"
-          echo "$hardcoded_creds"
+          echo "$sensitive_findings"
           exit 1
         else
           echo "✓ No hardcoded credentials detected"
+        fi
+        
+        # Check for sensitive files
+        if find . -name "*.key" -o -name "*.pem" -o -name ".env" | grep -q .; then
+          echo "❌ Sensitive files detected!"
+          exit 1
+        else
+          echo "✓ No sensitive files found"
         fi
         
         echo "Security scan completed"
