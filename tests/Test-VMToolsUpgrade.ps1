@@ -184,25 +184,63 @@ Describe "VMware Tools Auto-Upgrade Tests" {
 # Integration tests (require actual vCenter environment)
 Describe "Integration Tests" -Tag "Integration" {
     
+    BeforeAll {
+        # Integration test configuration
+        $TestvCenter = $env:TEST_VCENTER ?? "test-vcenter.example.com"
+        $TestCredential = if ($env:TEST_VCENTER_USER) {
+            $securePassword = ConvertTo-SecureString $env:TEST_VCENTER_PASS -AsPlainText -Force
+            New-Object PSCredential($env:TEST_VCENTER_USER, $securePassword)
+        } else {
+            $null
+        }
+    }
+    
     Context "vCenter Connection" {
-        It "Should connect to test vCenter" -Skip {
-            # Skip by default - requires actual test environment
-            # Uncomment and configure for integration testing
-            
-            # $connection = Connect-VIServer -Server $TestVCenter -Credential $TestCredential
-            # $connection | Should -Not -Be $null
-            # Disconnect-VIServer -Confirm:$false
+        It "Should connect to test vCenter" -Skip:(-not $TestCredential) {
+            if ($TestCredential) {
+                $connection = Connect-VIServer -Server $TestvCenter -Credential $TestCredential -ErrorAction SilentlyContinue
+                $connection | Should -Not -Be $null
+                if ($connection) {
+                    Disconnect-VIServer -Server $connection -Confirm:$false
+                }
+            }
+        }
+        
+        It "Should handle invalid credentials gracefully" {
+            $badCred = New-Object PSCredential("baduser", (ConvertTo-SecureString "badpass" -AsPlainText -Force))
+            { Connect-VIServer -Server $TestvCenter -Credential $badCred -ErrorAction Stop } | Should -Throw
         }
     }
 
     Context "VM Operations" {
-        It "Should retrieve VM list from vCenter" -Skip {
-            # Skip by default - requires actual test environment
-            
-            # Connect-VIServer -Server $TestVCenter -Credential $TestCredential
-            # $vms = Get-VM
-            # $vms.Count | Should -BeGreaterThan 0
-            # Disconnect-VIServer -Confirm:$false
+        It "Should retrieve VM list from vCenter" -Skip:(-not $TestCredential) {
+            if ($TestCredential) {
+                Connect-VIServer -Server $TestvCenter -Credential $TestCredential -ErrorAction SilentlyContinue
+                $vms = Get-VM -ErrorAction SilentlyContinue
+                $vms | Should -Not -Be $null
+                Disconnect-VIServer -Confirm:$false -ErrorAction SilentlyContinue
+            }
+        }
+        
+        It "Should identify VMs with different Tools policies" -Skip:(-not $TestCredential) {
+            if ($TestCredential) {
+                Connect-VIServer -Server $TestvCenter -Credential $TestCredential -ErrorAction SilentlyContinue
+                $vms = Get-VM | Select-Object -First 5
+                foreach ($vm in $vms) {
+                    $toolsPolicy = $vm.ExtensionData.Config.Tools.ToolsUpgradePolicy
+                    $toolsPolicy | Should -BeIn @("manual", "upgradeAtPowerCycle", $null)
+                }
+                Disconnect-VIServer -Confirm:$false -ErrorAction SilentlyContinue
+            }
+        }
+    }
+    
+    Context "Script Integration" {
+        It "Should execute dry-run mode successfully" -Skip:(-not $TestCredential) {
+            if ($TestCredential) {
+                $result = & $ScriptPath -vCenter $TestvCenter -Credential $TestCredential -DryRun -Force
+                $LASTEXITCODE | Should -Be 0
+            }
         }
     }
 }
