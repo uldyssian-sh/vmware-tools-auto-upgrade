@@ -11,10 +11,6 @@
 
 This PowerCLI solution provides enterprise-grade automation for bulk-enabling VMware Tools auto-upgrade on power-on across all virtual machines in a vCenter environment. The script implements a safe, controlled approach with dry-run capabilities and comprehensive before/after reporting.
 
-![VMware Tools Auto-Upgrade Process](assets/images/vmware-tools-auto-upgrade-process.png)
-
-*Figure: VMware Tools Auto-Upgrade Process Flow - showing the complete workflow from discovery to validation*
-
 ## 🎯 Key Features
 
 - **Bulk Operations**: Process all VMs in vCenter simultaneously
