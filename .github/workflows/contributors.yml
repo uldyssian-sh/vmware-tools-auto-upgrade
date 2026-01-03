@@ -6,6 +6,9 @@ on:
     paths:
       - '.github/workflows/contributors.yml'
 
+permissions:
+  contents: write
+
 jobs:
   setup-contributors:
     runs-on: ubuntu-latest
