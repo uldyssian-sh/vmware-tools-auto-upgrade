@@ -35,11 +35,14 @@ This PowerCLI solution provides enterprise-grade automation for bulk-enabling VM
 git clone https://github.com/uldyssian-sh/vmware-tools-auto-upgrade.git
 cd vmware-tools-auto-upgrade
 
-# Import PowerCLI module (if not already loaded)
-Import-Module VMware.PowerCLI
+# Install required PowerShell modules
+.\requirements.psd1  # Run the installation script
+
+# Configure execution policy (if needed)
+.\scripts\Set-ExecutionPolicy-Helper.ps1
 
 # Run the script
-.\Enable-VMTools-AutoUpgrade-AllVMs.ps1
+.\scripts\Enable-VMTools-AutoUpgrade-AllVMs.ps1
 ```
 
 ## 📖 Usage Guide
