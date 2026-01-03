@@ -13,6 +13,10 @@ This PowerCLI solution provides enterprise-grade automation for bulk-enabling VM
 
 > **Latest Update**: Repository now includes comprehensive monitoring, batch execution, and enterprise-grade CI/CD pipeline.
 
+![VMware Tools Auto-Upgrade Process](https://miro.medium.com/v2/resize:fit:640/format:webp/1*yYxhTruaVmeso8f9KxpfMA.jpeg)
+
+*Enterprise PowerCLI solution for bulk VMware Tools auto-upgrade configuration*
+
 ## 🎯 Key Features
 
 - **Bulk Operations**: Process all VMs in vCenter simultaneously
