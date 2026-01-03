@@ -3,7 +3,7 @@
 [![PowerCLI](https://img.shields.io/badge/PowerCLI-Compatible-blue.svg)](https://github.com/uldyssian-sh/vmware-tools-auto-upgrade)
 [![VMware](https://img.shields.io/badge/VMware-vSphere-green.svg)](https://github.com/uldyssian-sh/vmware-tools-auto-upgrade)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/uldyssian-sh/vmware-tools-auto-upgrade/graphs/commit-activity)
+[![Maintenance](https://img.shields.io/badge/Maintained-yes-green.svg)](https://github.com/uldyssian-sh/vmware-tools-auto-upgrade/graphs/commit-activity)
 
 ## 📋 Overview
 
