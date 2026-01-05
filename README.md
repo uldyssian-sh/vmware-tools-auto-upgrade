@@ -232,11 +232,7 @@ We welcome contributions to improve this solution:
 - Add appropriate comments and documentation
 - Test thoroughly in lab environments before production use
 
-## 👥 Contributors
 
-- **uldyssian-sh LT** - *Project Maintainer* - [uldyssian-sh](https://github.com/uldyssian-sh)
-- **dependabot[bot]** - *Dependency Updates* - [dependabot](https://github.com/dependabot)
-- **actions-user** - *Automated Workflows* - GitHub Actions
 
 ## 📞 Support
 
